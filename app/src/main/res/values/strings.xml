@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">禮好</string>
+    <string name="action_settings">Settings</string>
+    <string name="label_fragment_select_receiver_gender_start_chat">閒聊</string>
+    <string name="label_fragment_select_receiver_gender_select_topic">選擇主題</string>
+    <string name="label_fragment_select_topic_topic1">旅遊</string>
+    <string name="label_fragment_select_topic_topic2">健康</string>
+    <string name="label_fragment_select_topic_topic3">理財</string>
+    <string name="label_fragment_select_topic_topic4">家庭</string>
+    <string name="label_fragment_select_topic_topic5">夢想</string>
+    <string name="label_fragment_select_topic_topic6">美食</string>
+    <string name="label_fragment_select_topic_topic7">學習</string>
+    <string name="label_fragment_select_topic_topic8">娛樂</string>
+    <string name="label_fragment_select_topic_topic9">其他</string>
+    <string name="label_fragment_chat_timer">06:20</string>
+    <string name="label_dialog_message_register_success">註冊成功</string>
+</resources>

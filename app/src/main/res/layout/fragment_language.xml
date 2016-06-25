@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal|center_vertical">
+
+    <ImageView
+        android:id="@+id/fragment_language_imv_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="right"
+        android:layout_marginBottom="@dimen/forth_margin"
+        android:src="@drawable/confirm"/>
+    <LinearLayout
+        android:id="@+id/fragment_language_ll_upper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/forth_margin"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/fragment_language_imv_chinese"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginRight="@dimen/margin"
+            android:src="@drawable/lang1" />
+
+        <ImageView
+            android:id="@+id/fragment_language_imv_taiwanese"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginRight="@dimen/margin"
+            android:src="@drawable/lang2" />
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginRight="@dimen/margin"
+            android:src="@drawable/lang3" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fragment_language_ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginRight="@dimen/margin"
+            android:src="@drawable/lang4" />
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginRight="@dimen/margin"
+            android:src="@drawable/lang5" />
+
+    </LinearLayout>
+</LinearLayout>
