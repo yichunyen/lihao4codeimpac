@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class SelectTopicFragment extends Fragment {
     private LinearLayout llTop;
     private LinearLayout llCenter;
     private LinearLayout llBottom;
+    private ImageView imvTopic;
     private OnSelectTopicListener OnSelectTopicListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,12 +33,17 @@ public class SelectTopicFragment extends Fragment {
         tvStartChat = (TextView) view.findViewById(R.id.fragment_select_topic_tv_start_chat);
         tvSelectTopic = (TextView) view.findViewById(R.id.fragment_select_topic_tv_select_topic);
         llTop = (LinearLayout) view.findViewById(R.id.fragment_select_topic_ll_topic_upper);
-        llCenter = (LinearLayout)view.findViewById(R.id.fragment_select_topic_ll_topic_center);
-        llBottom = (LinearLayout) view.findViewById(R.id.fragment_select_topic_ll_topic_bottom);
+//        llCenter = (LinearLayout)view.findViewById(R.id.fragment_select_topic_ll_topic_center);
+//        llBottom = (LinearLayout) view.findViewById(R.id.fragment_select_topic_ll_topic_bottom);
+        imvTopic = (ImageView) view.findViewById(R.id.fragment_select_topic_imv);
         initListener();
     }
 
     private void initListener(){
+//        Glide.with(this)
+//                .load(R.drawable.topic)
+//                .placeholder(R.color.foreBackground)
+//                .into(imvTopic);
         tvStartChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,35 +66,35 @@ public class SelectTopicFragment extends Fragment {
             }
         });
 
-        llCenter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OnSelectTopicListener.onClickChat();
-            }
-        });
-
-        llBottom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OnSelectTopicListener.onClickChat();
-            }
-        });
+//        llCenter.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                OnSelectTopicListener.onClickChat();
+//            }
+//        });
+//
+//        llBottom.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                OnSelectTopicListener.onClickChat();
+//            }
+//        });
     }
 
     private void displayTopicList(){
         tvStartChat.setVisibility(View.GONE);
         tvSelectTopic.setVisibility(View.GONE);
         llTop.setVisibility(View.VISIBLE);
-        llCenter.setVisibility(View.VISIBLE);
-        llBottom.setVisibility(View.VISIBLE);
+//        llCenter.setVisibility(View.VISIBLE);
+//        llBottom.setVisibility(View.VISIBLE);
     }
 
     public void hideTopicList(){
         tvStartChat.setVisibility(View.VISIBLE);
         tvSelectTopic.setVisibility(View.VISIBLE);
         llTop.setVisibility(View.GONE);
-        llCenter.setVisibility(View.GONE);
-        llBottom.setVisibility(View.GONE);
+//        llCenter.setVisibility(View.GONE);
+//        llBottom.setVisibility(View.GONE);
     }
 
     public interface OnSelectTopicListener{
