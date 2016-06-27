@@ -1,9 +1,14 @@
 package angelhacktaipei.project.yen.lihao;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +16,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements SelectGenderFragment.OnSelectGenderListener, SelectLanguageFragment.OnSelectLanguageListener, SelectLivingAreaFragment.OnSelectLivingAreaListener
         , SelectReceiverGenderFragment.OnSelectReceiverGenderListener, SelectTopicFragment.OnSelectTopicListener,
-            ChatFragment.OnCallingEndListener, RatingFragment.OnRateMemberListener{
+        ChatFragment.OnCallingEndListener, RatingFragment.OnRateMemberListener {
     private final int SELECT_GENDER = 0;
     private final int SELECT_LANGUAGE = 1;
     private final int SELECT_LIVING_AREA = 2;
@@ -32,6 +37,16 @@ public class MainActivity extends AppCompatActivity
     private ChatFragment chatFragment;
     private RatingFragment ratingFragment;
     private ConversationHistoryFragment conversationHistoryFragment;
+    /* UI */
+    private ImageView imvAudio;
+    private MediaPlayer mediaPlayer;
+    /* Sound Pool */
+    private SoundPool soundPool;
+    private int soundID4SelectYourGender;
+    private int soundID4SelectYourLanguage;
+    private int soundID4SelectChatGender;
+    private int soundID4ChooseLivingArea;
+    private boolean loaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +56,30 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initViews() {
+        mediaPlayer = new MediaPlayer();
         viewPager = (ViewPager) findViewById(R.id.activity_main_vp);
+
+        /* Init sound pool */
+        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                       int status) {
+                loaded = true;
+            }
+        });
+        soundID4SelectYourGender = soundPool.load(this, R.raw.audio_your_gender, 1);
+        soundID4SelectYourLanguage = soundPool.load(this, R.raw.audio_language, 1);
+        soundID4SelectChatGender = soundPool.load(this, R.raw.audio_chat_gender, 1);
+        soundID4ChooseLivingArea = soundPool.load(this, R.raw.audio_map, 1);
+
+        imvAudio = (ImageView) findViewById(R.id.activity_main_imv_voice);
+        imvAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playAudio(viewPager.getCurrentItem());
+            }
+        });
         initFragments();
 //        btnSend = (Button) findViewById(R.id.activity_main_send);
 //        btnSend.setOnClickListener(new View.OnClickListener() {
@@ -186,4 +224,32 @@ public class MainActivity extends AppCompatActivity
 //        return Settings.Secure.getString(getContentResolver(),
 //                Settings.Secure.ANDROID_ID);
 //    }
+
+    /**
+     * Play audio via current page number.
+     */
+    private void playAudio(int page) {
+        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        float actualVolume = (float) audioManager
+                .getStreamVolume(AudioManager.STREAM_MUSIC);
+        float maxVolume = (float) audioManager
+                .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        float volume = actualVolume / maxVolume;
+        if (loaded) {
+            switch (page) {
+                case SELECT_GENDER:
+                    soundPool.play(soundID4SelectYourGender, volume, volume, 1, 0, 1f);
+                    break;
+                case SELECT_LANGUAGE:
+                    soundPool.play(soundID4SelectYourLanguage, volume, volume, 1, 0, 1f);
+                    break;
+                case SELECT_RECEIVER_GENDER:
+                    soundPool.play(soundID4SelectChatGender, volume, volume, 1, 0, 1f);
+                    break;
+                case SELECT_LIVING_AREA:
+                    soundPool.play(soundID4ChooseLivingArea, volume, volume, 1, 0, 1f);
+                    break;
+            }
+        }
+    }
 }
