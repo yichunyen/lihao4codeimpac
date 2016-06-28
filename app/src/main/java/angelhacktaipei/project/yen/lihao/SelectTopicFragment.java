@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+
 /**
  * Created by Yan on 6/11/16.
  */
@@ -40,10 +43,11 @@ public class SelectTopicFragment extends Fragment {
     }
 
     private void initListener(){
-//        Glide.with(this)
-//                .load(R.drawable.topic)
-//                .placeholder(R.color.foreBackground)
-//                .into(imvTopic);
+        Glide.with(this)
+                .load(R.drawable.topic_gif)
+                .asGif()
+                .placeholder(R.color.foreBackground)
+                .into(imvTopic);
         tvStartChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
