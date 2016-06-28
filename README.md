@@ -7,3 +7,4 @@ LIHAO app is incredibly simple, and easy to use. From the beginning to the end, 
 # Contributor
 - Developer: Yi-Chun, Yen
 - Developer & UI Designer: Trista Chen
+- Others: Pi-Yi Kao, Tai-Hua Chung and Pum Pkin
